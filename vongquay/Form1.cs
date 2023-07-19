@@ -20,6 +20,8 @@ using Spire.Pdf;
 using org.apache.pdfbox.pdmodel.fdf;
 using com.sun.corba.se.spi.orbutil.threadpool;
 using Word = Microsoft.Office.Interop.Word;
+using System.Reflection;
+using sun.swing;
 
 namespace vongquay
 {
@@ -83,10 +85,8 @@ namespace vongquay
 
             }
         }
-
-        public static void Merge(string[] filesToMerge, string outputFilename, bool insertPageBreaks, string documentTemplate)
+        public static void Merge(string[] filesToMerge, string outputFilename, bool insertPageBreaks)
         {
-            object defaultTemplate = documentTemplate;
             object missing = System.Type.Missing;
             object pageBreak = Word.WdBreakType.wdSectionBreakNextPage;
             object outputFile = outputFilename;
@@ -115,20 +115,23 @@ namespace vongquay
                 // Loop thru each of the Word documents
                 foreach (string file in filesToMerge)
                 {
-                    breakStop++;
-                    // Insert the files to our template
-                    selection.InsertFile(
-                                                file
-                                            , ref missing
-                                            , ref missing
-                                            , ref missing
-                                            , ref missing);
+                    if (file != "") {
+                        breakStop++;
+                        // Insert the files to our template
+                        selection.InsertFile(
+                                                    file
+                                                , ref missing
+                                                , ref missing
+                                                , ref missing
+                                                , ref missing);
 
-                    //Do we want page breaks added after each documents?
-                    if (insertPageBreaks && breakStop != documentCount)
-                    {
-                        selection.InsertBreak(ref pageBreak);
-                    }
+                        //Do we want page breaks added after each documents?
+                        if (insertPageBreaks && breakStop != documentCount)
+                        {
+                            selection.InsertBreak(ref pageBreak);
+                        }
+                    };
+                    
                 }
 
                 // Save the document to it's output file.
@@ -166,12 +169,14 @@ namespace vongquay
         }
     
 
+
     private void save1_Click(object sender, EventArgs e)
-        {
+{
             FolderBrowserDialog dialog = new FolderBrowserDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 Savet2.Text = dialog.SelectedPath;
+                Savet3.Text = dialog.SelectedPath;
             }
         }
 
@@ -208,12 +213,26 @@ namespace vongquay
 
         private void inputCBPaths_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Filter = @"All Files|*.*";
-            openFileDialog1.FileName = "";
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            OpenFileDialog open = new OpenFileDialog();
+            open.Filter = @"All Files|*.docx";
+            open.Multiselect = true;
+            open.Title = "Open Text Files";
+
+            if (open.ShowDialog() == DialogResult.OK)
             {
-                Savet1.Text = System.IO.Path.GetFullPath(openFileDialog1.FileName);
+                if (open.FileNames.Length < 2) return;
+                listFilesText.Text = "";
+                foreach (String file in open.FileNames)
+                {
+                    listFilesText.Text += $"{file},";
+                }
             }
+        }
+
+        private void buttonCombine_Click(object sender, EventArgs e)
+        {
+            if (listFilesText.Text.Split(',').Length < 2) return;
+            Merge(listFilesText.Text.Split(','), Savet3.Text+"\\mergeFile",true);
         }
 
         private void optionW_CheckedChanged(object sender, EventArgs e)
