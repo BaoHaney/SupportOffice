@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.panelConvert = new System.Windows.Forms.Panel();
+            this.panelCombine = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.inputcb1 = new System.Windows.Forms.Button();
+            this.outputcb1 = new System.Windows.Forms.TextBox();
+            this.optionP = new System.Windows.Forms.RadioButton();
+            this.optionW = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
             this.convert1 = new System.Windows.Forms.Button();
             this.save1 = new System.Windows.Forms.Button();
             this.browser1 = new System.Windows.Forms.Button();
@@ -40,20 +47,13 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.panelCombine = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.inputcb1 = new System.Windows.Forms.Button();
-            this.outputcb1 = new System.Windows.Forms.TextBox();
-            this.optionP = new System.Windows.Forms.RadioButton();
-            this.optionW = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.panelConvert.SuspendLayout();
             this.panelCombine.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelConvert
             // 
-            this.panelConvert.Controls.Add(this.panelCombine);
             this.panelConvert.Controls.Add(this.convert1);
             this.panelConvert.Controls.Add(this.save1);
             this.panelConvert.Controls.Add(this.browser1);
@@ -66,6 +66,79 @@
             this.panelConvert.Name = "panelConvert";
             this.panelConvert.Size = new System.Drawing.Size(815, 678);
             this.panelConvert.TabIndex = 0;
+            // 
+            // panelCombine
+            // 
+            this.panelCombine.Controls.Add(this.button3);
+            this.panelCombine.Controls.Add(this.inputcb1);
+            this.panelCombine.Controls.Add(this.outputcb1);
+            this.panelCombine.Controls.Add(this.optionP);
+            this.panelCombine.Controls.Add(this.optionW);
+            this.panelCombine.Controls.Add(this.label2);
+            this.panelCombine.Location = new System.Drawing.Point(257, 8);
+            this.panelCombine.Name = "panelCombine";
+            this.panelCombine.Size = new System.Drawing.Size(815, 678);
+            this.panelCombine.TabIndex = 10;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(332, 546);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(182, 72);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "Combine";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // inputcb1
+            // 
+            this.inputcb1.Location = new System.Drawing.Point(379, 449);
+            this.inputcb1.Name = "inputcb1";
+            this.inputcb1.Size = new System.Drawing.Size(75, 23);
+            this.inputcb1.TabIndex = 7;
+            this.inputcb1.Text = "Browser";
+            this.inputcb1.UseVisualStyleBackColor = true;
+            this.inputcb1.Click += new System.EventHandler(this.inputCBPaths_Click);
+            // 
+            // outputcb1
+            // 
+            this.outputcb1.Location = new System.Drawing.Point(252, 228);
+            this.outputcb1.Name = "outputcb1";
+            this.outputcb1.Size = new System.Drawing.Size(360, 22);
+            this.outputcb1.TabIndex = 5;
+            // 
+            // optionP
+            // 
+            this.optionP.AutoSize = true;
+            this.optionP.Location = new System.Drawing.Point(590, 163);
+            this.optionP.Name = "optionP";
+            this.optionP.Size = new System.Drawing.Size(55, 20);
+            this.optionP.TabIndex = 2;
+            this.optionP.TabStop = true;
+            this.optionP.Text = "PDF";
+            this.optionP.UseVisualStyleBackColor = true;
+            this.optionP.CheckedChanged += new System.EventHandler(this.optionP_CheckedChanged);
+            // 
+            // optionW
+            // 
+            this.optionW.AutoSize = true;
+            this.optionW.Location = new System.Drawing.Point(239, 163);
+            this.optionW.Name = "optionW";
+            this.optionW.Size = new System.Drawing.Size(61, 20);
+            this.optionW.TabIndex = 1;
+            this.optionW.TabStop = true;
+            this.optionW.Text = "Word";
+            this.optionW.UseVisualStyleBackColor = true;
+            this.optionW.CheckedChanged += new System.EventHandler(this.optionW_CheckedChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(298, 74);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(193, 46);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Combine";
             // 
             // convert1
             // 
@@ -172,84 +245,23 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button_Combine_Click);
             // 
-            // panelCombine
+            // button4
             // 
-            this.panelCombine.Controls.Add(this.button3);
-            this.panelCombine.Controls.Add(this.inputcb1);
-            this.panelCombine.Controls.Add(this.outputcb1);
-            this.panelCombine.Controls.Add(this.optionP);
-            this.panelCombine.Controls.Add(this.optionW);
-            this.panelCombine.Controls.Add(this.label2);
-            this.panelCombine.Location = new System.Drawing.Point(0, 0);
-            this.panelCombine.Name = "panelCombine";
-            this.panelCombine.Size = new System.Drawing.Size(815, 678);
-            this.panelCombine.TabIndex = 10;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(332, 546);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(182, 72);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Combine";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // inputcb1
-            // 
-            this.inputcb1.Location = new System.Drawing.Point(379, 449);
-            this.inputcb1.Name = "inputcb1";
-            this.inputcb1.Size = new System.Drawing.Size(75, 23);
-            this.inputcb1.TabIndex = 7;
-            this.inputcb1.Text = "Browser";
-            this.inputcb1.UseVisualStyleBackColor = true;
-            this.inputcb1.Click += new System.EventHandler(this.inputCBPaths_Click);
-            // 
-            // outputcb1
-            // 
-            this.outputcb1.Location = new System.Drawing.Point(252, 228);
-            this.outputcb1.Name = "outputcb1";
-            this.outputcb1.Size = new System.Drawing.Size(360, 22);
-            this.outputcb1.TabIndex = 5;
-            // 
-            // optionP
-            // 
-            this.optionP.AutoSize = true;
-            this.optionP.Location = new System.Drawing.Point(590, 163);
-            this.optionP.Name = "optionP";
-            this.optionP.Size = new System.Drawing.Size(55, 20);
-            this.optionP.TabIndex = 2;
-            this.optionP.TabStop = true;
-            this.optionP.Text = "PDF";
-            this.optionP.UseVisualStyleBackColor = true;
-            this.optionP.CheckedChanged += new System.EventHandler(this.optionP_CheckedChanged);
-            // 
-            // optionW
-            // 
-            this.optionW.AutoSize = true;
-            this.optionW.Location = new System.Drawing.Point(239, 163);
-            this.optionW.Name = "optionW";
-            this.optionW.Size = new System.Drawing.Size(61, 20);
-            this.optionW.TabIndex = 1;
-            this.optionW.TabStop = true;
-            this.optionW.Text = "Word";
-            this.optionW.UseVisualStyleBackColor = true;
-            this.optionW.CheckedChanged += new System.EventHandler(this.optionW_CheckedChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(298, 74);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(193, 46);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Combine";
+            this.button4.BackColor = System.Drawing.Color.Chartreuse;
+            this.button4.Location = new System.Drawing.Point(6, 187);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(209, 58);
+            this.button4.TabIndex = 11;
+            this.button4.Text = "Combine";
+            this.button4.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1106, 700);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.panelCombine);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panelConvert);
@@ -285,6 +297,7 @@
         private System.Windows.Forms.RadioButton optionP;
         private System.Windows.Forms.RadioButton optionW;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button4;
     }
 }
 

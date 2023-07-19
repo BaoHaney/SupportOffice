@@ -195,9 +195,9 @@ namespace vongquay
 
         private void button_Combine_Click(object sender, EventArgs e)
         {
-            panelConvert.Visible = false;
             panelCombine.Visible = true;
-            
+            panelConvert.Visible = false;
+          
         }
 
         private void optionP_CheckedChanged(object sender, EventArgs e)
